@@ -6,9 +6,9 @@ Every immediate `machines/*` directory must contain a `recipe.toml`. The manifes
 
 The manifest also declares the ROM and asset layout expected from external checkouts. `tests/macos-launcher-contract.py` verifies launcher argument and runtime-prerequisite parity rather than making the manifest validator parse shell source text.
 
-Stage recipe and configuration changes before validating so the checks describe exactly what the commit will contain. Before committing, run `scripts/audit-public-tree.sh` and `python3 scripts/validate-recipes.py`. Keep configuration host-neutral, document unusual values, and test the recipe from a clean directory when practical.
+Stage recipe and configuration changes before validating so the checks describe exactly what the commit will contain. Before committing, run `scripts/check.sh` from anywhere in the checkout. It runs the public-tree audit and regression tests, manifest validation and unit tests, shell syntax checks, the boot-floppy builder tests when mtools is installed, and the launcher contract tests on macOS. Optional checks that cannot run include an installation hint; use `scripts/check.sh --require-optional` when you want missing optional tools to fail the run. The script also verifies that its checks do not change the Git working tree or index.
 
-On macOS, run `python3 -B tests/macos-launcher-contract.py -v` after changing a machine manifest or launcher.
+The named suites `repository-safety`, `boot-floppy`, and `macos-launcher` are useful while iterating on one area; for example, run `scripts/check.sh macos-launcher` after changing a machine manifest or launcher. An explicitly selected suite treats its core prerequisites as required. Keep configuration host-neutral, document unusual values, and test the recipe from a clean directory when practical.
 
 Do not include operating systems, product keys, installed disk images, ROMs, NVR state, firmware dumps, proprietary drivers, or media copied from another project. Link to official sources where redistribution is permitted and tell users to supply everything else themselves.
 

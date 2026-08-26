@@ -14,6 +14,12 @@ The repository contains configuration, setup instructions, and small helper scri
 
 Each machine directory contains a versioned `recipe.toml` manifest, a sanitized `86box.cfg`, hardware notes, installation instructions, required media names, known quirks, and recovery guidance. Runtime files remain local and are excluded by `.gitignore`.
 
+## Check changes locally
+
+Run `scripts/check.sh` from anywhere in the checkout before contributing. Git, Bash, and Python 3.11 or newer are required. Install [ShellCheck](https://www.shellcheck.net/) for shell linting and [mtools](https://www.gnu.org/software/mtools/) for the synthetic boot-floppy tests; when either optional tool is unavailable, the command explains what was skipped and how to enable it. On macOS it also exercises the launcher against disposable mock files without requiring 86Box, ROMs, operating-system media, or a real virtual disk.
+
+Use `scripts/check.sh --require-optional` for a fully provisioned run in which missing optional tools are errors. The same entry point and its named suites drive CI, so the project-owned check list does not drift between local and hosted runs.
+
 ## Safety and licensing
 
 Never commit an installed disk, product key, ROM dump, NVR image, proprietary driver, or operating-system image. Checksums may be documented so users can identify their own media, but a checksum is not a download or a license to redistribute the file.

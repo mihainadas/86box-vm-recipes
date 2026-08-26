@@ -7,48 +7,28 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   repository-safety:
     name: Repository safety
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Check patches and public contents
-        run: |
-          empty_tree="$(git hash-object -t tree /dev/null)"
-          git diff --check "$empty_tree" HEAD
-          ./scripts/audit-public-tree.sh
-
-      - name: Check shell scripts
-        run: |
-          bash -n scripts/audit-public-tree.sh
-          bash -n tests/audit-public-tree.sh
-          bash -n tests/boot-floppy-builder.sh
-          bash -n machines/1995-dream-486/boot-floppy/make-floppy.sh
-          shellcheck scripts/audit-public-tree.sh
-          shellcheck tests/audit-public-tree.sh
-          shellcheck tests/boot-floppy-builder.sh
-          shellcheck machines/1995-dream-486/boot-floppy/make-floppy.sh
-
-      - name: Exercise public-tree audit
-        run: |
-          tests/audit-public-tree.sh
-          test -z "$(git status --porcelain)"
-
-      - name: Validate machine recipes
-        run: |
-          python3 -c 'import sys; assert sys.version_info >= (3, 11), sys.version'
-          python3 -B scripts/validate-recipes.py
-          python3 -B -m unittest discover -s tests -p 'test_*.py' -v
-          test -z "$(git status --porcelain)"
+      - name: Run repository-safety suite
+        run: ./scripts/check.sh --require-optional repository-safety
 
   boot-floppy-builder:
     name: Boot-floppy builder
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -61,40 +41,20 @@ jobs:
           sudo apt-get install --yes mtools
 
       - name: Exercise builder with disposable placeholders
-        run: |
-          tests/boot-floppy-builder.sh
-          test -z "$(git status --porcelain)"
+        run: ./scripts/check.sh --require-optional boot-floppy
 
   macos-launcher:
     name: macOS launcher
     runs-on: macos-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Check zsh syntax
-        run: zsh -n machines/1995-dream-486/launch-macos.command
-
-      - name: Exercise launcher contract
-        run: |
-          python3 -c 'import sys; assert sys.version_info >= (3, 11), sys.version'
-          python3 -B tests/macos-launcher-contract.py -v
-          test -z "$(git status --porcelain)"
-
-      - name: Exercise public-tree audit
-        run: |
-          bash -n scripts/audit-public-tree.sh
-          bash -n tests/audit-public-tree.sh
-          ./scripts/audit-public-tree.sh
-          tests/audit-public-tree.sh
-          test -z "$(git status --porcelain)"
-
       - name: Install FAT image tools
         run: brew install mtools
 
-      - name: Exercise boot-floppy builder
-        run: |
-          tests/boot-floppy-builder.sh
-          test -z "$(git status --porcelain)"
+      - name: Run all macOS checks
+        run: ./scripts/check.sh all
