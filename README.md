@@ -1,5 +1,7 @@
 # 86Box VM Recipes
 
+[![CI](https://github.com/mihainadas/86box-vm-recipes/actions/workflows/ci.yml/badge.svg)](https://github.com/mihainadas/86box-vm-recipes/actions/workflows/ci.yml)
+
 Reproducible, documented machine configurations for [86Box](https://86box.net/). This is an unofficial community project and is not affiliated with the 86Box project.
 
 The repository contains configuration, setup instructions, and small helper scripts. It deliberately does not contain operating systems, product keys, hard-disk images, firmware, ROMs, commercial drivers, or installation media. Bring legally obtained media and use the official [86Box ROM repository](https://github.com/86Box/roms) and [asset repository](https://github.com/86Box/assets) separately.
