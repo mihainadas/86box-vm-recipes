@@ -1,0 +1,21 @@
+schema_version = 1
+
+[[item]]
+id = "winamp"
+title = "Winamp"
+version = "your legally obtained version"
+source_type = "file"
+path = "/absolute/path/to/your/winamp-installer.exe"
+sha256 = "replace-with-the-files-lowercase-sha256-digest"
+destination = "APPS/WINAMP/SETUP.EXE"
+license_acknowledged = false
+
+[[item]]
+id = "favorite-game"
+title = "Favorite game installer"
+version = "your legally obtained version"
+source_type = "directory"
+path = "/absolute/path/to/your/game-cd-directory"
+sha256 = "replace-with-the-files-lowercase-sha256-digest"
+destination = "GAMES/FAVORITE"
+license_acknowledged = false

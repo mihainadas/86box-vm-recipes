@@ -26,6 +26,7 @@ Suites:
   all                Run every suite supported by this host (default)
   repository-safety  Check patches, public contents, scripts, and manifests
   boot-floppy        Exercise the boot-floppy builder with synthetic inputs
+  software-media     Validate the catalog and build a synthetic companion ISO
   macos-launcher     Exercise the launcher contract with synthetic inputs
 
 Options:
@@ -48,7 +49,7 @@ while (($# > 0)); do
             usage
             exit 0
             ;;
-        all | repository-safety | boot-floppy | macos-launcher)
+        all | repository-safety | boot-floppy | software-media | macos-launcher)
             if [[ -n "$suite" ]]; then
                 die "only one suite may be selected" 2
             fi
@@ -322,6 +323,19 @@ run_boot_floppy() {
     tests/boot-floppy-builder.sh
 }
 
+preflight_software_media() {
+    require_python
+    require_command xorriso 'Install xorriso with Homebrew or your system package manager.'
+}
+
+run_software_media() {
+    printf '\n==> Software media\n'
+    preflight_software_media
+    python3 -B scripts/software-media.py validate
+    python3 -B -m unittest tests.test_software_media -v
+    python3 -B tests/software-media-integration.py -v
+}
+
 preflight_macos_launcher() {
     if [[ "$(uname -s)" != "Darwin" ]]; then
         die 'the macos-launcher suite requires macOS'
@@ -347,6 +361,7 @@ run_all() {
         if missing_tool="$(missing_boot_tool)"; then
             die "$missing_tool is required in strict mode. $(boot_tool_guidance "$missing_tool")"
         fi
+        preflight_software_media
         if [[ "$(uname -s)" == "Darwin" ]]; then
             preflight_macos_launcher
         fi
@@ -361,6 +376,15 @@ run_all() {
         printf 'SKIP: boot-floppy tests need %s. %s\n' "$missing_tool" "$(boot_tool_guidance "$missing_tool")" >&2
     else
         run_boot_floppy
+    fi
+
+    if ! have_command xorriso; then
+        if [[ "$strict_optional" -eq 1 ]]; then
+            die 'xorriso is required in strict mode. Install it with Homebrew or your system package manager.'
+        fi
+        printf 'SKIP: software-media tests need xorriso. Install it with Homebrew or your system package manager.\n' >&2
+    else
+        run_software_media
     fi
 
     if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -379,6 +403,9 @@ case "$suite" in
         ;;
     boot-floppy)
         run_boot_floppy
+        ;;
+    software-media)
+        run_software_media
         ;;
     macos-launcher)
         run_macos_launcher

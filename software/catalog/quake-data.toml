@@ -1,0 +1,17 @@
+schema_version = 1
+id = "quake-data"
+title = "Quake game data"
+version = "your licensed DOS edition"
+kind = "application"
+compatibility = "period-compatible"
+distribution = "user-supplied"
+homepage = "https://github.com/id-Software/Quake"
+license_expression = "NONE"
+license_basis = "The GPL engine source release does not grant rights to the commercial game data."
+license_evidence = "https://github.com/id-Software/Quake/blob/master/readme.txt"
+notice_location = "Retain the license supplied with your privately obtained game data; none is distributed here."
+source_compliance = "No game data is fetched or distributed."
+security_notes = "Quake is an ambitious workload for a DX2/66; reduce resolution and expectations."
+personal_destination = "GAMES/QUAKE"
+personal_source_type = "directory"
+artifact = []

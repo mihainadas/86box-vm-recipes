@@ -1,0 +1,17 @@
+schema_version = 1
+id = "winamp-2x"
+title = "Winamp 2.x"
+version = "2.x"
+kind = "application"
+compatibility = "period-compatible"
+distribution = "user-supplied"
+homepage = "https://winamp.com/"
+license_expression = "NONE"
+license_basis = "Proprietary software; this catalog entry is a recommendation, not permission to redistribute an installer."
+license_evidence = "https://winamp.com/"
+notice_location = "Retain the license supplied with your privately obtained installer; none is distributed here."
+source_compliance = "No artifact is fetched or distributed. Add your legally obtained installer only through the private manifest."
+security_notes = "Legacy player and plug-ins should be treated as untrusted and used offline in the VM."
+personal_destination = "APPS/WINAMP/SETUP.EXE"
+personal_source_type = "file"
+artifact = []

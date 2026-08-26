@@ -1,0 +1,17 @@
+schema_version = 1
+id = "norton-commander"
+title = "Norton Commander"
+version = "period DOS edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://us.norton.com/"
+license_expression = "NONE"
+license_basis = "Legacy proprietary utility; this recommendation grants no redistribution rights."
+license_evidence = "https://us.norton.com/legal"
+notice_location = "Retain the license supplied with your privately obtained utility; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Use disk-writing tools only on disposable guest images with backups."
+personal_destination = "APPS/NORTON"
+personal_source_type = "directory"
+artifact = []

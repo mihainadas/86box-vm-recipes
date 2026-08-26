@@ -1,0 +1,17 @@
+schema_version = 1
+id = "warcraft-ii"
+title = "Warcraft II"
+version = "DOS or Windows edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://warcraft2.blizzard.com/"
+license_expression = "NONE"
+license_basis = "Commercial game; this recommendation grants no redistribution rights."
+license_evidence = "https://www.blizzard.com/en-us/legal"
+notice_location = "Retain the license supplied with your privately obtained game; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Keep legacy networking isolated if multiplayer is enabled."
+personal_destination = "GAMES/WAR2"
+personal_source_type = "directory"
+artifact = []

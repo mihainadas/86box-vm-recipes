@@ -1,0 +1,17 @@
+schema_version = 1
+id = "duke-nukem-3d"
+title = "Duke Nukem 3D"
+version = "your licensed DOS edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://3drealms.com/catalog/duke-nukem-3d_27/"
+license_expression = "NONE"
+license_basis = "Commercial game; this recommendation grants no redistribution rights."
+license_evidence = "https://3drealms.com/terms-and-conditions/"
+notice_location = "Retain the license supplied with your privately obtained game; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Performance varies with detail settings on a DX2/66."
+personal_destination = "GAMES/DUKE3D"
+personal_source_type = "directory"
+artifact = []

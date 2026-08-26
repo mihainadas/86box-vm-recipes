@@ -1,0 +1,17 @@
+schema_version = 1
+id = "office-95"
+title = "Microsoft Office 95"
+version = "95"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://www.microsoft.com/microsoft-365"
+license_expression = "NONE"
+license_basis = "Commercial application suite; this recommendation grants no redistribution rights."
+license_evidence = "https://www.microsoft.com/en-us/licensing/product-licensing/products"
+notice_location = "Retain the license supplied with your privately obtained media; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Do not open untrusted legacy documents or expose the guest to the public Internet."
+personal_destination = "APPS/OFFICE95"
+personal_source_type = "directory"
+artifact = []

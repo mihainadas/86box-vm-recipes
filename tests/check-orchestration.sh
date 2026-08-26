@@ -120,6 +120,8 @@ new_fixture() {
     printf '%s\n' '#!/bin/zsh' 'exit 0' \
         > "$fixture/machines/1995-dream-486/launch-macos.command"
     printf '%s\n' '# validator placeholder' > "$fixture/scripts/validate-recipes.py"
+    printf '%s\n' '# software media placeholder' > "$fixture/scripts/software-media.py"
+    printf '%s\n' '# integration placeholder' > "$fixture/tests/software-media-integration.py"
     printf '%s\n' 'tracked-base' > "$fixture/tracked.txt"
     printf '%s\n' 'staged-base' > "$fixture/staged.txt"
     printf '%s\n' 'mode-base' > "$fixture/mode.txt"
@@ -151,6 +153,7 @@ new_fixture() {
     for tool in mformat mmd mcopy mdir; do
         printf '%s\n' '#!/usr/bin/env bash' 'exit 0' > "$tool_dir/$tool"
     done
+    printf '%s\n' '#!/usr/bin/env bash' 'exit 0' > "$tool_dir/xorriso"
     make_shellcheck "$tool_dir"
     chmod +x "$tool_dir"/*
     for tool in bash git dirname mktemp stat readlink cmp rm chmod mkdir cat; do
@@ -226,7 +229,7 @@ assert_guard_failure() {
 )
 [[ ! -s "$test_root/help.stderr" ]] || fail '--help wrote to stderr'
 grep -Fq 'Usage: scripts/check.sh' "$test_root/help.stdout" || fail '--help omitted usage'
-for suite in all repository-safety boot-floppy macos-launcher; do
+for suite in all repository-safety boot-floppy software-media macos-launcher; do
     grep -Fq "$suite" "$test_root/help.stdout" || fail "--help omitted $suite"
 done
 tests_run=$((tests_run + 1))
@@ -273,6 +276,9 @@ printf '%s\n' \
     'python:-B scripts/validate-recipes.py' \
     "python:-B -m unittest discover -s tests -p test_*.py -v" \
     boot \
+    'python:-B scripts/software-media.py validate' \
+    'python:-B -m unittest tests.test_software_media -v' \
+    'python:-B tests/software-media-integration.py -v' \
     'zsh:-n machines/1995-dream-486/launch-macos.command' \
     'python:-B tests/macos-launcher-contract.py -v' \
     > "$test_root/all-macos.expected"
@@ -289,6 +295,9 @@ if grep -Eq '^(zsh:|python:-B tests/macos-launcher-contract)' "$last_log"; then
     fail 'Linux all dispatched the macOS launcher'
 fi
 grep -Fxq boot "$last_log" || fail 'Linux all omitted boot-floppy tests'
+grep -Fxq 'python:-B scripts/software-media.py validate' "$last_log" || fail 'Linux all omitted software-media validation'
+grep -Fxq 'python:-B -m unittest tests.test_software_media -v' "$last_log" || fail 'Linux all omitted software-media unit tests'
+grep -Fxq 'python:-B tests/software-media-integration.py -v' "$last_log" || fail 'Linux all omitted software-media integration tests'
 tests_run=$((tests_run + 1))
 
 # ShellCheck is optional locally, strict in CI-style runs, and checked before
@@ -327,6 +336,13 @@ run_fixture selected-macos-linux "$fixture" macos-launcher
 assert_status 1 selected-macos-linux
 grep -Fq 'macos-launcher suite requires macOS' "$last_stderr" || fail 'macOS host failure lacked guidance'
 [[ ! -s "$last_log" ]] || fail 'macOS suite ran on Linux'
+tests_run=$((tests_run + 1))
+
+rm -f -- "$test_root/selected-prerequisite tools/xorriso"
+run_fixture selected-software-missing "$fixture" software-media
+assert_status 1 selected-software-missing
+grep -Fq 'xorriso is required.' "$last_stderr" || fail 'software-media prerequisite failure lacked guidance'
+[[ ! -s "$last_log" ]] || fail 'software-media suite ran after a missing prerequisite'
 tests_run=$((tests_run + 1))
 
 # CI refuses a dirty checkout before dispatch.
