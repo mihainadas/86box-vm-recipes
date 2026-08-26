@@ -37,6 +37,13 @@ jobs:
           tests/audit-public-tree.sh
           test -z "$(git status --porcelain)"
 
+      - name: Validate machine recipes
+        run: |
+          python3 -c 'import sys; assert sys.version_info >= (3, 11), sys.version'
+          python3 -B scripts/validate-recipes.py
+          python3 -B -m unittest discover -s tests -p 'test_*.py' -v
+          test -z "$(git status --porcelain)"
+
   boot-floppy-builder:
     name: Boot-floppy builder
     runs-on: ubuntu-latest

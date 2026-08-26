@@ -1,0 +1,22 @@
+schema_version = 1
+id = "1995-dream-486"
+name = "The 1995 Dream 486"
+machine_config = "86box.cfg"
+global_config = "86box_global.cfg"
+
+[launchers]
+macos = "launch-macos.command"
+
+[[hard_disks]]
+config_id = "hdd_01"
+path = "disks/windows95.hdd"
+bytes = 2111864832
+sectors = 63
+heads = 64
+cylinders = 1023
+bus = "ide"
+channel = "0:0"
+
+[requirements]
+rom_subdirectories = ["machines"]
+asset_files = ["sounds/hdd/hdd_audio_profiles.cfg"]

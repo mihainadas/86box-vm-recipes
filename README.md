@@ -12,7 +12,7 @@ The repository contains configuration, setup instructions, and small helper scri
 
 ## What a recipe provides
 
-Each machine directory contains a sanitized `86box.cfg`, hardware notes, installation instructions, required media names, known quirks, and recovery guidance. Runtime files remain local and are excluded by `.gitignore`.
+Each machine directory contains a versioned `recipe.toml` manifest, a sanitized `86box.cfg`, hardware notes, installation instructions, required media names, known quirks, and recovery guidance. Runtime files remain local and are excluded by `.gitignore`.
 
 ## Safety and licensing
 

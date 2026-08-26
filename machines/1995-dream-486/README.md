@@ -34,6 +34,7 @@ The tracked recipe expects these local-only paths:
 1995-dream-486/
 ├── 86box.cfg
 ├── 86box_global.cfg
+├── recipe.toml
 ├── disks/
 │   └── windows95.hdd
 ├── media/
