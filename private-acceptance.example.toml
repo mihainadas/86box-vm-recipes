@@ -1,0 +1,7 @@
+schema_version = 1
+archive = "/absolute/path/86Box-macOS-x86_64+arm64-b9001.zip"
+roms = "/absolute/path/86Box-roms"
+assets = "/absolute/path/86Box-assets"
+installed_hdd = "/absolute/path/windows95.hdd"
+startup_floppy = "/absolute/path/win95-startup-udvd2.img"
+install_iso = "/absolute/path/windows95-install.iso"

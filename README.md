@@ -14,6 +14,8 @@ The repository contains configuration, setup instructions, and small helper scri
 
 Each machine directory contains a versioned `recipe.toml` manifest, a sanitized `86box.cfg`, hardware notes, installation instructions, required media names, known quirks, and recovery guidance. Runtime files remain local and are excluded by `.gitignore`.
 
+The optional [private acceptance harness](docs/private-acceptance.md) can validate your locally supplied media and, only with an explicit launch flag, exercise a fully disposable copy without attaching the original writable images.
+
 ## Check changes locally
 
 Run `scripts/check.sh` from anywhere in the checkout before contributing. Git, Bash, and Python 3.11 or newer are required. Install [ShellCheck](https://www.shellcheck.net/) for shell linting and [mtools](https://www.gnu.org/software/mtools/) for the synthetic boot-floppy tests; when either optional tool is unavailable, the command explains what was skipped and how to enable it. On macOS it also exercises the launcher against disposable mock files without requiring 86Box, ROMs, operating-system media, or a real virtual disk.
