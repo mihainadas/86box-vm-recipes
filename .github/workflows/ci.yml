@@ -27,9 +27,11 @@ jobs:
         run: |
           bash -n scripts/audit-public-tree.sh
           bash -n tests/audit-public-tree.sh
+          bash -n tests/boot-floppy-builder.sh
           bash -n machines/1995-dream-486/boot-floppy/make-floppy.sh
           shellcheck scripts/audit-public-tree.sh
           shellcheck tests/audit-public-tree.sh
+          shellcheck tests/boot-floppy-builder.sh
           shellcheck machines/1995-dream-486/boot-floppy/make-floppy.sh
 
       - name: Exercise public-tree audit
@@ -60,42 +62,8 @@ jobs:
 
       - name: Exercise builder with disposable placeholders
         run: |
-          test_dir="$(mktemp -d)"
-          trap 'rm -rf "$test_dir"' EXIT
-
-          base_image="$test_dir/freedos-base.img"
-          output_image="$test_dir/win95-startup-udvd2.img"
-          driver_dir="$test_dir/drivers"
-          mkdir -p "$driver_dir"
-
-          truncate --size=1440K "$base_image"
-          mformat -i "$base_image" -f 1440 -v FD14-BOOT ::
-          mmd -i "$base_image" ::/FREEDOS
-          mmd -i "$base_image" ::/FREEDOS/BIN
-
-          printf 'FreeCOM placeholder\n' > "$test_dir/COMMAND.COM"
-          mcopy -i "$base_image" "$test_dir/COMMAND.COM" ::/FREEDOS/BIN/COMMAND.COM
-          printf 'HimemX placeholder\n' > "$driver_dir/HIMEMX.EXE"
-          printf 'UDVD2 placeholder\n' > "$driver_dir/UDVD2.SYS"
-          printf 'SHSUCDX placeholder\n' > "$driver_dir/SHSUCDX.COM"
-
-          machines/1995-dream-486/boot-floppy/make-floppy.sh \
-            "$base_image" "$driver_dir" "$output_image"
-
-          test "$(stat --format=%s "$output_image")" -eq 1474560
-          mtype -i "$output_image" ::/FDCONFIG.SYS | tr -d '\r' > "$test_dir/FDCONFIG.SYS"
-          mtype -i "$output_image" ::/FDAUTO.BAT | tr -d '\r' > "$test_dir/FDAUTO.BAT"
-          cmp machines/1995-dream-486/boot-floppy/FDCONFIG.SYS "$test_dir/FDCONFIG.SYS"
-          cmp machines/1995-dream-486/boot-floppy/FDAUTO.BAT "$test_dir/FDAUTO.BAT"
-          mdir -i "$output_image" ::/HIMEMX.EXE
-          mdir -i "$output_image" ::/UDVD2.SYS
-          mdir -i "$output_image" ::/SHSUCDX.COM
-
-          if machines/1995-dream-486/boot-floppy/make-floppy.sh \
-            "$base_image" "$driver_dir" "$output_image"; then
-              printf 'Builder unexpectedly overwrote an existing image.\n' >&2
-              exit 1
-          fi
+          tests/boot-floppy-builder.sh
+          test -z "$(git status --porcelain)"
 
   macos-launcher:
     name: macOS launcher
@@ -115,4 +83,12 @@ jobs:
           bash -n tests/audit-public-tree.sh
           ./scripts/audit-public-tree.sh
           tests/audit-public-tree.sh
+          test -z "$(git status --porcelain)"
+
+      - name: Install FAT image tools
+        run: brew install mtools
+
+      - name: Exercise boot-floppy builder
+        run: |
+          tests/boot-floppy-builder.sh
           test -z "$(git status --porcelain)"

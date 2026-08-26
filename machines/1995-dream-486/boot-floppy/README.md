@@ -21,7 +21,7 @@ Install `mtools`, put the three driver files together in a private directory, an
 ./make-floppy.sh /path/to/freedos-base.img /path/to/private-drivers win95-startup-udvd2.img
 ```
 
-The output remains untracked because `*.img` is ignored. The script checks that the expected FreeCOM path exists before changing the copy.
+The builder also requires the standard system `link` utility and either `shasum` or `sha256sum`; macOS and mainstream Linux distributions provide these by default. The output remains untracked because `*.img` is ignored. The script checks the image size, expected FreeCOM path, copied drivers, exact startup files, and SHA-256 digest before publishing the result. It builds in private temporary files beside the requested output and atomically refuses to replace any path that already exists, including one created concurrently. A failed build removes its temporary files and never changes the base image or private driver files.
 
 ## Known-good reference
 
@@ -34,7 +34,7 @@ The exact image used while installing this recipe had these properties:
 - `UDVD2.SYS`: 3,987 bytes, SHA-256 `748a22d72e4245eb176ba6f6dd264a2ba571634d320fff19297791d5d1a57b5e`
 - `SHSUCDX.COM`: 8,088 bytes, SHA-256 `9db5ccd8cb731a731b953a5ca4b04537cbc2d772d392de4a7ea173080e6d6488`
 
-Different FreeDOS package revisions may produce a different whole-image checksum while behaving correctly. The functional test matters more: the boot log should show UDVD2 loading, SHSUCDX should install, and `DIR D:` should list the Windows 95 CD.
+Different FreeDOS package revisions may produce a different whole-image checksum while behaving correctly. FAT directory timestamps can also vary between builds, so matching functional contents do not imply a deterministic whole-image hash. The functional test matters more: the boot log should show UDVD2 loading, SHSUCDX should install, and `DIR D:` should list the Windows 95 CD.
 
 ## Keep your working image safe
 
