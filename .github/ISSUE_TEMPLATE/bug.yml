@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible problem with a public recipe or helper.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the recipes. Never attach operating-system media, ROMs, installed disks, product keys, private paths, logs containing personal data, or other material you cannot redistribute.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Machine recipe or documentation
+        - Boot-floppy builder
+        - macOS launcher
+        - Validation or repository checks
+        - Private acceptance harness
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the public behavior and the result you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Use placeholders for private paths and media names.
+      placeholder: |
+        1. Run ...
+        2. Observe ...
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Repository revision
+      description: Commit hash or release tag, if known.
+  - type: input
+    id: environment
+    attributes:
+      label: Host and 86Box version
+      placeholder: macOS 15; 86Box v6.0 build 9001
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public-data confirmation
+      options:
+        - label: I removed private paths, product keys, ROMs, disk images, installation media, and other non-redistributable data.
+          required: true
+        - label: This is not a security vulnerability report.
+          required: true
