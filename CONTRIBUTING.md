@@ -10,6 +10,8 @@ Stage recipe and configuration changes before validating so the checks describe 
 
 The named suites `repository-safety`, `boot-floppy`, and `macos-launcher` are useful while iterating on one area; for example, run `scripts/check.sh macos-launcher` after changing a machine manifest or launcher. An explicitly selected suite treats its core prerequisites as required. Keep configuration host-neutral, document unusual values, and test the recipe from a clean directory when practical.
 
+Run `python3 -B -m unittest tests.test_private_acceptance -v` after changing the private acceptance harness, its report schema, trust record, or safety documentation. Tests use synthetic archives and media only; never introduce a real emulator archive or private medium as a fixture.
+
 Do not include operating systems, product keys, installed disk images, ROMs, NVR state, firmware dumps, proprietary drivers, or media copied from another project. Link to official sources where redistribution is permitted and tell users to supply everything else themselves.
 
 Write Markdown prose as one continuous source line per paragraph. Use line breaks only for real paragraph boundaries, list items, code blocks, tables, or other structural Markdown.
