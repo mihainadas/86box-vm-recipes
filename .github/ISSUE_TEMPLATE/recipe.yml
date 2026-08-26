@@ -1,0 +1,45 @@
+name: Recipe proposal
+description: Propose a documented, redistributable 86Box machine recipe.
+title: "[Recipe]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals describe configuration and legally obtainable dependencies. Do not attach operating systems, ROMs, installed disks, product keys, or proprietary drivers.
+  - type: input
+    id: machine
+    attributes:
+      label: Machine concept
+      placeholder: 1998 Pentium II workstation
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Intended hardware
+      description: List the emulated machine, CPU, storage controllers, display, sound, input, and optional network hardware.
+    validations:
+      required: true
+  - type: textarea
+    id: software
+    attributes:
+      label: Guest software and media assumptions
+      description: Name versions and explain how users can identify or obtain their own legal media; do not provide download links to unauthorized copies.
+    validations:
+      required: true
+  - type: textarea
+    id: quirks
+    attributes:
+      label: Known quirks and validation plan
+      description: Include boot details, drivers, expected manual checks, and any compatibility risks.
+    validations:
+      required: true
+  - type: checkboxes
+    id: licensing
+    attributes:
+      label: Redistribution confirmation
+      options:
+        - label: The proposal will contain only original text/configuration or material whose redistribution terms permit inclusion.
+          required: true
