@@ -26,9 +26,16 @@ jobs:
       - name: Check shell scripts
         run: |
           bash -n scripts/audit-public-tree.sh
+          bash -n tests/audit-public-tree.sh
           bash -n machines/1995-dream-486/boot-floppy/make-floppy.sh
           shellcheck scripts/audit-public-tree.sh
+          shellcheck tests/audit-public-tree.sh
           shellcheck machines/1995-dream-486/boot-floppy/make-floppy.sh
+
+      - name: Exercise public-tree audit
+        run: |
+          tests/audit-public-tree.sh
+          test -z "$(git status --porcelain)"
 
   boot-floppy-builder:
     name: Boot-floppy builder
@@ -94,3 +101,11 @@ jobs:
 
       - name: Check zsh syntax
         run: zsh -n machines/1995-dream-486/launch-macos.command
+
+      - name: Exercise public-tree audit
+        run: |
+          bash -n scripts/audit-public-tree.sh
+          bash -n tests/audit-public-tree.sh
+          ./scripts/audit-public-tree.sh
+          tests/audit-public-tree.sh
+          test -z "$(git status --porcelain)"
