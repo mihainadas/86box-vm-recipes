@@ -99,6 +99,8 @@ export EIGHTYSIXBOX_ASSET_PATH="/path/to/86Box-assets"
 
 The script can discover 86Box in `/Applications`, but the ROM and asset paths are always explicit so it never guesses which copy to use.
 
+Before starting 86Box, the launcher checks the manifest-declared ROM and asset markers and requires `disks/windows95.hdd` to contain exactly 2,111,864,832 bytes. These preflight checks catch incomplete checkouts and accidental disk-geometry changes without opening or modifying the image.
+
 ## Backups
 
 Once installation and drivers are stable, stop the VM and copy `windows95.hdd` outside the repository. Do not copy a live disk and do not commit the backup. A clean post-install image is dramatically faster to restore than repeating Windows 95 hardware detection.
