@@ -1,0 +1,17 @@
+schema_version = 1
+id = "netscape-navigator"
+title = "Netscape Navigator"
+version = "3.x or 4.x"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://www.mozilla.org/en-US/about/history/"
+license_expression = "NONE"
+license_basis = "Legacy proprietary browser; this recommendation grants no redistribution rights."
+license_evidence = "https://www.mozilla.org/en-US/about/history/"
+notice_location = "Retain the license supplied with your privately obtained installer; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "For historical demonstration only; never browse the modern public Web with it."
+personal_destination = "APPS/NETSCAPE/SETUP.EXE"
+personal_source_type = "file"
+artifact = []

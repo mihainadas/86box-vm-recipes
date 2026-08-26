@@ -1,0 +1,17 @@
+schema_version = 1
+id = "pkzip"
+title = "PKZIP"
+version = "period DOS edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://www.pkware.com/pkzip"
+license_expression = "NONE"
+license_basis = "Proprietary utility; this recommendation grants no redistribution rights."
+license_evidence = "https://www.pkware.com/about/legal"
+notice_location = "Retain the license supplied with your privately obtained utility; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Extract only trusted archives inside the offline VM."
+personal_destination = "APPS/PKZIP/PKZIP.EXE"
+personal_source_type = "file"
+artifact = []

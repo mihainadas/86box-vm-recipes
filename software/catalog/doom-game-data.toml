@@ -1,0 +1,17 @@
+schema_version = 1
+id = "doom-game-data"
+title = "DOOM game data"
+version = "registered or shareware data appropriate to your license"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://github.com/id-Software/DOOM"
+license_expression = "NONE"
+license_basis = "The engine source release does not grant rights to the commercial game data required to play."
+license_evidence = "https://github.com/id-Software/DOOM/blob/master/README.TXT"
+notice_location = "Retain the license supplied with your privately obtained game data; none is distributed here."
+source_compliance = "No game data is fetched or distributed. Add data from a copy you may legally use only through the private manifest."
+security_notes = "Keep the VM offline unless a specific multiplayer or networking exercise requires an isolated network."
+personal_destination = "GAMES/DOOM/DOOM.WAD"
+personal_source_type = "file"
+artifact = []

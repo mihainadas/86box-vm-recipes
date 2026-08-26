@@ -1,5 +1,10 @@
 .DS_Store
 
+# Locally fetched and assembled software media
+/software/cache/
+/software/dist/
+/software/private-software.toml
+
 # Installed or blank virtual disks
 **/*.hdd
 **/*.vhd

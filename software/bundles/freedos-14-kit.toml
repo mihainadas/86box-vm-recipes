@@ -1,0 +1,10 @@
+schema_version = 1
+id = "freedos-14-kit"
+title = "FreeDOS 1.4 redistributable OS and applications kit"
+output = "kit"
+redistributable = true
+volume_id = "FD14_KIT"
+max_payload_bytes = 1468006400
+max_output_bytes = 1500000000
+items = ["freedos-14"]
+allow_private = false

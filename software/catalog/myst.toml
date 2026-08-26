@@ -1,0 +1,17 @@
+schema_version = 1
+id = "myst"
+title = "Myst"
+version = "Windows 3.x or Windows 95 edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://cyan.com/games/myst/"
+license_expression = "NONE"
+license_basis = "Commercial game; this recommendation grants no redistribution rights."
+license_evidence = "https://cyan.com/legal/"
+notice_location = "Retain the license supplied with your privately obtained game; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Use original media or a lawful personal backup in the offline VM."
+personal_destination = "GAMES/MYST"
+personal_source_type = "directory"
+artifact = []

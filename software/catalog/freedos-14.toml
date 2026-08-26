@@ -1,0 +1,36 @@
+schema_version = 1
+id = "freedos-14"
+title = "FreeDOS 1.4 Legacy and Bonus CDs"
+version = "1.4"
+kind = "operating_system"
+compatibility = "modern-retro"
+distribution = "redistributable"
+homepage = "https://www.freedos.org/download/"
+license_expression = "NOASSERTION"
+license_basis = "The official distribution is an aggregation of packages with per-package open-source licenses included in the media."
+license_evidence = "https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.4/report.html"
+notice_location = "Inside the unchanged upstream ISOs with the package sets and matching sources."
+source_compliance = "Official FreeDOS media includes matching package sources and license metadata; the artifacts are preserved byte-for-byte before ISO extraction."
+security_notes = "Modern retro release for classic x86 hardware; not presented as a period-1995 artifact."
+personal_destination = "OS/FREEDOS/FD14LEG.ISO"
+personal_source_type = "file"
+
+[[artifact]]
+id = "legacycd"
+role = "bootable-install-media"
+url = "https://download.freedos.org/1.4/FD14-LegacyCD.zip"
+filename = "FD14-LegacyCD.zip"
+bytes = 274386388
+sha256 = "715b01754b8f5fd24cceb32d023f46aa9456c582c594d7d5fbe34787e1c773d4"
+destination = "OS/FREEDOS/FD14LEG.ISO"
+extract_single_iso = true
+
+[[artifact]]
+id = "bonuscd"
+role = "applications-and-source-media"
+url = "https://download.freedos.org/1.4/FD14-BonusCD.zip"
+filename = "FD14-BonusCD.zip"
+bytes = 402121793
+sha256 = "59ef3c2a3011862f408f2f5dba725c08532674b99f0e16451e06cb6de73defa8"
+destination = "APPS/FREEDOS/FD14BNS.ISO"
+extract_single_iso = true

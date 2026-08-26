@@ -1,0 +1,17 @@
+schema_version = 1
+id = "simcity-2000"
+title = "SimCity 2000"
+version = "DOS or Windows edition"
+kind = "application"
+compatibility = "period-authentic"
+distribution = "user-supplied"
+homepage = "https://www.ea.com/games/simcity"
+license_expression = "NONE"
+license_basis = "Commercial game; this recommendation grants no redistribution rights."
+license_evidence = "https://www.ea.com/legal/user-agreement"
+notice_location = "Retain the license supplied with your privately obtained game; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Prefer an offline VM and original media or a lawful personal backup."
+personal_destination = "GAMES/SIMCITY"
+personal_source_type = "directory"
+artifact = []

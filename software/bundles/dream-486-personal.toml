@@ -1,0 +1,23 @@
+schema_version = 1
+id = "dream-486-personal"
+title = "Personal Windows 95 companion CD"
+output = "iso"
+redistributable = false
+volume_id = "DREAM486_APPS"
+max_payload_bytes = 681574400
+max_output_bytes = 734003200
+items = [
+  "winamp-2x",
+  "doom-game-data",
+  "simcity-2000",
+  "warcraft-ii",
+  "duke-nukem-3d",
+  "quake-data",
+  "myst",
+  "paint-shop-pro",
+  "office-95",
+  "netscape-navigator",
+  "pkzip",
+  "norton-commander",
+]
+allow_private = true

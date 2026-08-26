@@ -1,0 +1,17 @@
+schema_version = 1
+id = "paint-shop-pro"
+title = "Paint Shop Pro"
+version = "period Windows edition"
+kind = "application"
+compatibility = "period-compatible"
+distribution = "user-supplied"
+homepage = "https://www.paintshoppro.com/"
+license_expression = "NONE"
+license_basis = "Proprietary application; this recommendation grants no redistribution rights."
+license_evidence = "https://www.paintshoppro.com/en/eula/"
+notice_location = "Retain the license supplied with your privately obtained installer; none is distributed here."
+source_compliance = "No artifact is fetched or distributed."
+security_notes = "Legacy import plug-ins and file parsers should be used only with trusted files."
+personal_destination = "APPS/PSP/SETUP.EXE"
+personal_source_type = "file"
+artifact = []
