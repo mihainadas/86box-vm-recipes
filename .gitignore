@@ -1,0 +1,48 @@
+.DS_Store
+
+# Installed or blank virtual disks
+**/*.hdd
+**/*.vhd
+**/*.vhdx
+**/*.qcow
+**/*.qcow2
+
+# Installation, recovery, and driver media
+**/*.img
+**/*.ima
+**/*.iso
+**/*.cue
+**/*.zip
+**/*.7z
+**/*.rar
+
+# Firmware and generated machine state
+**/*.rom
+**/*.bin
+**/*.nvr
+
+# Executable guest software and drivers
+**/*.exe
+**/*.com
+**/*.dll
+**/*.vxd
+**/*.sys
+**/*.SYS
+!**/boot-floppy/FDCONFIG.SYS
+
+# Runtime output
+**/printer/*
+!**/printer/README.md
+**/screenshots/*
+!**/screenshots/README.md
+**/*.log
+
+# Media and state directories are documentation-only in Git
+**/disks/*
+!**/disks/README.md
+**/media/*
+!**/media/README.md
+**/nvr/*
+!**/nvr/README.md
+**/boot-floppy/drivers/*
+!**/boot-floppy/drivers/README.md
